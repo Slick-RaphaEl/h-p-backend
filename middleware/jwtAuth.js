@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 exports.jwtAuth = async (req, res, next) => {
-    const bearerToken = req.session.token;
+    const bearerToken = req.header('auth-token');
     if (typeof bearerToken !== 'undefined') {
         jwt.verify(bearerToken, process.env.JWT_SECRET, async (err, authData) => {
             if (err) {
